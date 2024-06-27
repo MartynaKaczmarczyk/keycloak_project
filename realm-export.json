@@ -1,0 +1,45 @@
+{
+  "realm": "keycloak-react-app",
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "admin",
+          "value": "admin"
+        }
+      ],
+      "realmRoles": ["admin"]
+    },
+    {
+      "username": "user",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "user",
+          "value": "user"
+        }
+      ],
+      "realmRoles": ["user"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "admin"
+      },
+      {
+        "name": "user"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "react",
+      "secret": "react",
+      "redirectUris": ["http://localhost:3000/*"],
+      "enabled": true
+    }
+  ]
+}
