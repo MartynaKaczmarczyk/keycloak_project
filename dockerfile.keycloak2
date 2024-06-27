@@ -1,0 +1,9 @@
+FROM quay.io/keycloak/keycloak:15.0.2
+
+ENV KEYCLOAK_USER=admin
+ENV KEYCLOAK_PASSWORD=admin
+
+COPY realm-export.json /tmp/realm-export.json
+VOLUME /opt/jboss/keycloak/standalone/data/realm-export
+
+CMD ["-b", "0.0.0.0", "-Dkeycloak.migration.action=import", "-Dkeycloak.migration.provider=singleFile", "-Dkeycloak.migration.file=/tmp/realm-export.json", "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING"]
