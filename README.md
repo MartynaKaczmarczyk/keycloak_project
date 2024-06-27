@@ -14,4 +14,21 @@ Aby uruchomić aplikację, należy użyć polecenia `docker-compose up`.
 ```bash
 docker-compose up
 ```
-Ewentualnie w komendach zapisałam jak działa projekt.
+Ewentualnie można uruchomić Dockerfile keycloak'a jako kontener z wolumenem:
+
+```
+docker build -f dockerfile.keycloak -t my-keycloak .
+```
+
+A następnie w folderze `frontend` zainstalować zależności:
+
+```
+npm install
+```
+
+A następnie uruchomić ręcznie aplikację:
+
+```
+npm start
+```
+
