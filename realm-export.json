@@ -1,12 +1,13 @@
 {
   "realm": "keycloak-react-app",
+  "enabled": true,
   "users": [
     {
       "username": "admin",
       "enabled": true,
       "credentials": [
         {
-          "type": "admin",
+          "type": "password",
           "value": "admin"
         }
       ],
@@ -17,7 +18,7 @@
       "enabled": true,
       "credentials": [
         {
-          "type": "user",
+          "type": "password",
           "value": "user"
         }
       ],
@@ -39,6 +40,7 @@
       "clientId": "react",
       "secret": "react",
       "redirectUris": ["http://localhost:3000/*"],
+      "rootUrl": "http://localhost:3000/",
       "enabled": true
     }
   ]
