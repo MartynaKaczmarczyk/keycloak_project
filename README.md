@@ -1,4 +1,5 @@
-### Uruchamianie aplikacji z użyciem Docker Compose
+#### Martyna Kaczmarczyk
+### Uruchamianie aplikacji z użyciem Docker Compose 
 Najpierw pobrałam keycloak kontener:
 ```
 docker run -p 8080:8080 -e KEYCLOAK_USER=<username> -e KEYCLOAK_PASSWORD=<password> quay.io/keycloak/keycloak:15.0.2
@@ -17,7 +18,7 @@ docker-compose up
 Ewentualnie można uruchomić Dockerfile keycloak'a jako kontener z wolumenem:
 
 ```
-docker build -f dockerfile.keycloak -t my-keycloak .
+docker build -f dockerfile.keycloak2 -t my-keycloak .
 ```
 
 A następnie w folderze `frontend` zainstalować zależności:
