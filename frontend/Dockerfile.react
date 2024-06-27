@@ -1,0 +1,22 @@
+# Dockerfile.react
+
+# Używamy obrazu Node.js w wersji 14 jako bazowego
+FROM node:14
+
+# Ustawiamy katalog roboczy w kontenerze
+WORKDIR /app
+
+# Kopiujemy pliki package.json i package-lock.json do katalogu roboczego
+COPY package*.json ./
+
+# Instalujemy zależności
+RUN npm install
+
+# Kopiujemy resztę plików aplikacji do katalogu roboczego
+COPY . .
+
+# Budujemy aplikację React
+RUN npm run build
+
+# Uruchamiamy aplikację
+CMD ["npm", "start"]
