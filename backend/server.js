@@ -1,15 +1,20 @@
 const express = require('express');
-const app = express();
 const session = require('express-session');
 const Keycloak = require('keycloak-connect');
-const memoryStore = new session.MemoryStore();
+const fs = require('fs');
 const path = require('path');
 
-// Adjusted path to keycloak.json using path.resolve()
-const keycloakConfig = path.resolve(__dirname, 'keycloak.json');
+const app = express();
+const memoryStore = new session.MemoryStore();
 
-// Keycloak configuration
-const keycloak = new Keycloak(keycloakConfig);
+// Ścieżka do pliku keycloak.json
+const keycloakConfigPath = path.join(__dirname, 'keycloak.json');
+
+// Wczytaj zawartość pliku keycloak.json
+const keycloakConfig = JSON.parse(fs.readFileSync(keycloakConfigPath, 'utf-8'));
+
+// Konfiguracja Keycloak
+const keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
 
 app.use(session({
     secret: 'secret1',
@@ -18,25 +23,18 @@ app.use(session({
     store: memoryStore
 }));
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-
 app.use(keycloak.middleware({ logout: '/logout' }));
 
+// Ścieżka do logowania
+app.get('/login', keycloak.protect(), (req, res) => {
+    res.redirect('/');
+});
+
+// Ścieżka główna
 app.get('/', (req, res) => {
-    console.log('Hello');
-    res.send('Hello');
+    res.send('Witaj w aplikacji zabezpieczonej przez Keycloak!');
 });
 
-app.get('/home', keycloak.protect(), (req, res) => {
-    console.log('Home accessed..');
-    res.send('Welcome to Home');
-});
-
-app.get('/notdefined', keycloak.protect('realm:keycloak-app-react'), (req, res) => {
-    console.log("not defined")
-    res.send("This resource is not defined in keycloak. User with app-user role can access this API")
-});
-
-const server = app.listen(5000, function () {
-    console.log(`Example app listening at http://localhost:5000`);
+const server = app.listen(5000, () => {
+    console.log('Server started on http://localhost:5000');
 });
