@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ef-keycloak-connect": "^1.7.0",
+    "express": "^4.19.2",
+    "keycloak-connect": "^25.0.1",
+    "keycloak-js": "^25.0.1"
+  }
+}

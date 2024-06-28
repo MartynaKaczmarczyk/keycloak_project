@@ -1,0 +1,10 @@
+{
+  "realm": "keycloak-react-app",
+  "auth-server-url": "http://localhost:8080/auth/",
+  "ssl-required": "external",
+  "resource": "server",
+  "credentials": {
+    "secret": "66354ee2-e4f6-4741-a938-ff16fa979236"
+  },
+  "confidential-port": 0
+}
