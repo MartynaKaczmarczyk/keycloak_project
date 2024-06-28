@@ -7,13 +7,10 @@ const path = require('path');
 const app = express();
 const memoryStore = new session.MemoryStore();
 
-// Ścieżka do pliku keycloak.json
 const keycloakConfigPath = path.join(__dirname, 'keycloak.json');
 
-// Wczytaj zawartość pliku keycloak.json
 const keycloakConfig = JSON.parse(fs.readFileSync(keycloakConfigPath, 'utf-8'));
 
-// Konfiguracja Keycloak
 const keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
 
 app.use(session({
